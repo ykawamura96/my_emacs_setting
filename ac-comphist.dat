@@ -1,0 +1,62 @@
+((("abs" .
+   [1 0 0])
+  ("MoveBaseGoal" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("ROSInterruptException" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("send_goal" .
+   [0 0 0 0 0 0 0 0 1])
+  ("target_pose" .
+   [4 0 0 0 0 0 0 0 0 0 0])
+  ("pose" .
+   [2 0 0 2])
+  ("header" .
+   [0 0 0 1 0 0])
+  ("goal" .
+   [7 1 0 3])
+  ("import" .
+   [0 0 0 0 0 2])
+  ("Traceback" .
+   [0 0 0 0 0 0 0 1 0])
+  ("sleep" .
+   [0 0 0 1 1])
+  ("Subscriber" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("rospy" .
+   [8 1 0 0 1])
+  ("INFO" .
+   [0 0 0 1])
+  ("anonymous" .
+   [1 0 0 0 0 0 0 0 0])
+  ("True" .
+   [0 0 0 1])
+  ("actionlib" .
+   [0 0 1 0 0 0 0 0 0])
+  ("SimpleActionClient" .
+   [1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0])
+  ("MoveBaseAction" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("client" .
+   [2 0 0 4 0 0])
+  ("wait_for_server" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("is_shutdown" .
+   [0 0 0 1 0 0 0 0 0 0 0])
+  ("i" .
+   [5])
+  ("go_conor" .
+   [1 0 0 0 0 0 0 0])
+  ("IndentationError" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("y" .
+   [1])
+  ("conor" .
+   [1 0 0 0 1])
+  ("talker" .
+   [0 0 0 0 1 0])
+  ("pub" .
+   [2 0 0])
+  ("roslib" .
+   [1 0 0 0 0 0])
+  ("queue_size" .
+   [0 0 0 1 0 0 0 0 0 0])))
