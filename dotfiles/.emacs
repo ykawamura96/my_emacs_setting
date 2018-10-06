@@ -37,7 +37,7 @@
 
 ;;powerllinesce
 (require 'powerline)
-
+ 
 (defun powerline-my-theme ()
   "Setup the my mode-line."
   (interactive)
@@ -99,14 +99,6 @@
 (global-set-key (kbd "C-c i") 'clang-format-region)
 (setq clang-format-style-option "llvm")
 
-;;python
-(require 'jedi-core)
-(setq jedi:complete-on-dot t)
-(setq jedi:use-shortcuts t)
-;;(jedi:install-server)
-(add-hook 'python-mode-hook 'jedi:setup)
-;;(add-to-list 'company-backends 'company-jedi)
-
 ;;autopair
 (require 'autopair)
 (autopair-global-mode)
@@ -117,9 +109,8 @@
 (require 'trr)
 
 
-
-(add-to-list 'load-path "/home/mech-user/.emacs.d/rainbow-delimiters/")
 ;; rainbow-delimiters を使うための設定
+(add-to-list 'load-path "/home/mech-user/.emacs.d/rainbow-delimiters/")
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
@@ -145,23 +136,34 @@
 ;;company-mode
 (add-to-list 'load-path "/home/mech-user/.emacs.d/elpa/company-0.9.6/")
 (require 'company)
-;;(global-company-mode) ; 全バッファで有効にする
+(global-company-mode) ; 全バッファで有効にする
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
+(add-to-list 'company-backends 'company-irony)
 
-(eval-after-load "irony"
-  '(progn
-     (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
-     ;;(add-to-list 'company-backends 'company-irony)
-     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-          (add-hook 'c-mode-common-hook 'irony-mode)))
+;;(eval-after-load "irony"
+;;  '(progn
+;;     (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
+;;     ;;(add-to-list 'company-backends 'company-irony)
+;;     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;;          (add-hook 'c-mode-common-hook 'irony-mode)))
+;;
+
 
 (require 'irony)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;;python
+(require 'jedi-core)
+(setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t)
+;;(jedi:install-server)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'company-backends 'company-jedi)
 
 ;;bash-completion
 (require 'bash-completion)
@@ -258,6 +260,7 @@
 
 ;;flycheck
 (require 'flycheck)
+
 ;;選択bufferを大きくする golden ratio
 ;;(golden-ratio-mode 1)
 
@@ -282,13 +285,54 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
+    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
+ '(fci-rule-color "#3C3D37")
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))))
  '(irony-additional-clang-options (quote ("-std=c++11")))
+ '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons))))
+    (company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
