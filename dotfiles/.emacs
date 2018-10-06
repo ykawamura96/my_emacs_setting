@@ -11,11 +11,12 @@
 
 ;;theme
 ;;(load-theme 'forest-blue t)
-(load-theme 'monokai t)
-(setq monokai-gray "#E06C75")
+(load-theme 'monokai t)(setq monokai-gray "#E06C75")
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'moe-dark t)
 
+;;日本語フォントの設定
+(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
 ;;helm
 (require 'helm)
 (require 'helm-config)
@@ -34,7 +35,7 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 
 
-;;powerlline
+;;powerllinesce
 (require 'powerline)
 
 (defun powerline-my-theme ()
