@@ -1,9 +1,8 @@
-
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 (when (< emacs-major-version 24)
-
+)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
@@ -174,7 +173,7 @@
 ;;(setq make-backup-files nil)
 
 ;; 終了時にオートセーブファイルを削除する
-(setq delete-auto-save-files t)
+;;(setq delete-auto-save-files t)
 
 ;; スタートアップメッセージを表示させない
 ;;(setq inhibit-startup-message 1)
@@ -204,7 +203,7 @@
 ;;(add-to-list 'default-frame-alist '(alpha . (0.85 0.85)))
 
 ;; メニューバーを消
-(menu-bar-mode -1)
+;;(menu-bar-mode -1)
 
 ;; ツールバーを消す
 (tool-bar-mode -1)
@@ -387,3 +386,5 @@
   (interactive "nAlpha: ")
   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
 
+;;C-hでback spaceになるようにする
+(global-set-key "\C-h" 'delete-backward-char)
