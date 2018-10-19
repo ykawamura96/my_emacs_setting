@@ -1,8 +1,7 @@
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-)
+(when (< emacs-major-version 24)S
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
@@ -12,9 +11,12 @@
 
 ;;theme
 ;;(load-theme 'forest-blue t)
-(load-theme 'monokai t)(setq monokai-gray "#E06C75")
+;;(load-theme 'monokai t)(setq monokai-gray "#E06C75")
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'moe-dark t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'dracula t)
+
 
 ;;日本語フォントの設定
 (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
@@ -34,7 +36,6 @@
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-
 
 ;;powerllinesce
 (require 'powerline)
@@ -137,7 +138,9 @@
 ;;company-mode
 (add-to-list 'load-path "/home/mech-user/.emacs.d/elpa/company-0.9.6/")
 (require 'company)
-(global-company-mode) ; 全バッファで有効にする
+;;(global-company-mode) ; 全バッファで有効にする
+(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'cpp-mode-hook 'company-mode)
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
@@ -163,6 +166,7 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t)
 ;;(jedi:install-server)
+(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi)
 
@@ -221,7 +225,7 @@
 (blink-cursor-mode 0)
 
 ;; カーソル行をハイライトする
-(global-hl-line-mode t)
+;;(global-hl-line-mode t)
 
 ;; 対応する括弧を光らせる
 (show-paren-mode t)
@@ -239,6 +243,7 @@
 
 ;; シフト＋矢印で範囲選択
 (setq pc-select-selection-keys-only t)
+
 
 ;; C-kで行全体を削除する
 (setq kill-whole-line t)
@@ -260,7 +265,7 @@
  [f9] 'eval-buffer)
 
 ;;flycheck
-(require 'flycheck)
+;;(require 'flycheck)
 
 ;;選択bufferを大きくする golden ratio
 ;;(golden-ratio-mode 1)
@@ -289,7 +294,7 @@
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
+    ("aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -306,7 +311,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
+    (dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
@@ -388,3 +393,4 @@
 
 ;;C-hでback spaceになるようにする
 (global-set-key "\C-h" 'delete-backward-char)
+
