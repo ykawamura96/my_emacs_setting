@@ -1,0 +1,7 @@
+(ros::load-ros-manifest "jsk_pcl_ros")
+
+(defvar *topic-name* "/multi_plane_estimate/outpu")
+(defvar *plane-list* nil)
+
+(ros::roseis "plane_detection")
+

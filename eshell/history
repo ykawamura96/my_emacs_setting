@@ -1,0 +1,12 @@
+ls
+cd catkin_ws/src/beginner_tutorials/src/
+ls
+cd ../scripts/
+ls
+cd ~
+roscore
+ll
+ls
+roseus hoge.l 
+ls
+roseus hoge.l 

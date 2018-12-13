@@ -1,0 +1,31 @@
+<launch>
+  <include file="$(find jsk_2018_10_semi)/launch/hsi_color_filter.launch" />
+  <include file="$(find jsk_2018_10_semi)/launch/door_detection.launch" />
+  <group>
+    <node pkg="jsk_pcl_ros" type="multi_plane_extraction" name="box_pcl_extraction">
+      <remap from="~input" to="/head_camera/depth_registered/points"/>
+      <remap from="~indices" to="/multi_plane_estimate/output"/>
+      <remap from="~input_polygons" to="/multi_plane_estimate/output_polygon"/>
+      <remap from="~input_coefficients" to="/multi_plane_estimate/output_coefficients"/>
+      <rosparam>
+        use_coefficients: true
+        min_height: 0.03
+        max_height: 0.5
+      </rosparam>
+    </node>
+  </group>
+  <group ns="HSI_color_filter_2">
+    <node pkg="jsk_pcl_ros" type="multi_plane_extraction" name="multi_plane_extraction">
+      <remap from="~input" to="/head_camera/depth_registered/points"/>
+      <remap from="~indices" to="multi_plane_estimate/output"/>
+      <remap from="~input_polygons" to="multi_plane_estimate/output_polygon"/>
+      <remap from="~input_coefficients" to="multi_plane_estimate/output_coefficients"/> 
+      <rosparam>
+        use_coefficients: true
+        use_async: true
+        min_height: 0.03
+        max_height: 0.3
+      </rosparam>
+    </node>
+  </group>
+</launch>

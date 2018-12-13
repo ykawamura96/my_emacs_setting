@@ -11,32 +11,34 @@
 
 ;;theme
 ;;(load-theme 'forest-blue t)
-;;(load-theme 'monokai t)(setq monokai-gray "#E06C75")
+;;(load-theme 'monokai t)
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'moe-dark t)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dracula t)
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;;(load-theme 'dracula t)
 
 
 ;;日本語フォントの設定
 (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
 ;;helm
-(require 'helm)
-(require 'helm-config)
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "C-x C-r") 'helm-recentf)
-(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-(define-key global-map (kbd "C-c i")   'helm-imenu)
-(define-key global-map (kbd "C-x b")   'helm-buffers-list)
-(define-key global-map (kbd "M-r")     'helm-resume)
-(define-key global-map (kbd "C-M-h")   'helm-apropos)
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-
+;;(require 'helm)
+;;(require 'helm-config)
+;;(define-key global-map (kbd "M-x")     'helm-M-x)
+;;(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+;;(define-key global-map (kbd "C-x C-r") 'helm-recentf)
+;;(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+;;(define-key global-map (kbd "C-c i")   'helm-imenu)
+;;;;(define-key global-map (kbd "C-x b")   'helm-buffers-list)
+;;(define-key global-map (kbd "M-r")     'helm-resume)
+;;(define-key global-map (kbd "C-M-h")   'helm-apropos)
+;;(global-set-key (kbd "C-c h") 'helm-command-prefix)
+;;(global-unset-key (kbd "C-x c"))
+;;
+;;(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+;;(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+;;(define-key helm-map (kbd "C-h") 'delete-backward-char)
+;;
 ;;powerllinesce
 (require 'powerline)
  
@@ -102,23 +104,24 @@
 (setq clang-format-style-option "llvm")
 
 ;;autopair
-(require 'autopair)
-(autopair-global-mode)
+;;(require 'autopair)
+;;(autopair-global-mode)
 
 ;;trr
 (add-to-list 'load-path "/home/mech-user/.emacs.d/emacs-trr/")
 (setq trr-japanese t) ;; uncomment this to play with japanese mode
 (require 'trr)
 
-
+;;anzu
+(global-anzu-mode +1)
 ;; rainbow-delimiters を使うための設定
 (add-to-list 'load-path "/home/mech-user/.emacs.d/rainbow-delimiters/")
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;;rosemacs
-;;(add-to-list 'load-path "/opt/ros/kinetic/share/emacs/site-lisp")
-;;(require 'rosemacs-config)
+(add-to-list 'load-path "/opt/ros/kinetic/share/emacs/site-lisp")
+(require 'rosemacs-config)
 ;;(global-set-key "\C-x\C-r" ros-keymap)
 
 ;; 括弧の色を強調する設定
@@ -134,17 +137,18 @@
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 
 
-
 ;;company-mode
 (add-to-list 'load-path "/home/mech-user/.emacs.d/elpa/company-0.9.6/")
 (require 'company)
-;;(global-company-mode) ; 全バッファで有効にする
+;;(global-company-mode +1)
+
+;; 自動補完を offにしたい場合は, company-idle-delayを nilに設定する
+;; auto-completeでいうところの ac-auto-start にあたる.
 (add-hook 'python-mode-hook 'company-mode)
 (add-hook 'cpp-mode-hook 'company-mode)
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
-(add-to-list 'company-backends 'company-irony)
 
 ;;(eval-after-load "irony"
 ;;  '(progn
@@ -155,11 +159,6 @@
 ;;
 
 
-(require 'irony)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;;python
 (require 'jedi-core)
@@ -239,7 +238,7 @@
 
 
 ;; スクロールは１行ごとに
-(setq scroll-conservatively 1)
+;;(setq scroll-conservatively 1)
 
 ;; シフト＋矢印で範囲選択
 (setq pc-select-selection-keys-only t)
@@ -261,8 +260,7 @@
 (global-set-key (kbd "<M-right>") 'windmove-right)
 
 ;;reload
-(global-set-key
- [f9] 'eval-buffer)
+(global-set-key [f9] 'eval-buffer)
 
 ;;flycheck
 ;;(require 'flycheck)
@@ -294,7 +292,7 @@
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
+    ("e61752b5a3af12be08e99d076aedadd76052137560b7e684a8be2f8d2958edc3" "aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "e03d2f414fb109f3920752b10b92323697174f49d577da9e69979edbb147a921" "bd51a329aa9b8e29c6cf2c8a8cf136e0d2960947dfa5c1f82b29c9178ad89a27" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -311,7 +309,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
+    (anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
@@ -348,8 +346,9 @@
 
 ;; redo+
 (require 'redo+)
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-r") 'redo)
+;;(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'redo)
+
 (setq undo-no-redo t) ; 過去のundoがredoされないようにする
 (setq undo-limit 600000)
 (setq undo-strong-limit 900000)
@@ -394,3 +393,13 @@
 ;;C-hでback spaceになるようにする
 (global-set-key "\C-h" 'delete-backward-char)
 
+;;
+;; backup の保存先
+;;
+(setq backup-directory-alist
+  (cons (cons ".*" (expand-file-name "~/.emacs.d/backup"))
+        backup-directory-alist))
+
+
+(setq auto-save-file-name-transforms
+  `((".*", (expand-file-name "~/.emacs.d/backup/") t)))

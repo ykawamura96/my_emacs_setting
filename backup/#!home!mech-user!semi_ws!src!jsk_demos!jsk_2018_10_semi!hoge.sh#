@@ -1,0 +1,9 @@
+https://github.com/k-okada/jsk_demos.git#!/bin/bash
+
+for a in /move_base/global_costmap/inflater/inflation_radius /move_base/global_costmap/inflater/robot_radius /move_base/global_costmap/robot_radius /move_base/local_costmap/inflater/inflation_radius /move_base/local_costmap/inflater/robot_radius /move_base/local_costmap/robot_radius /safe_teleop_base/local_costmap/inflater/inflation_radius /safe_teleop_base/local_costmap/inflater/robot_radius /safe_teleop_base/local_costmap/robot_radius  ; do
+    echo $a
+	rosparam get $a
+	rosparam set $a 0.5
+done
+rosnode kill move_base
+
