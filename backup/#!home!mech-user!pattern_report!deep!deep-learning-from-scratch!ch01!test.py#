@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#import numpy as np
+import sys, os
+sys.path.append(os.pardir)
+from dataset.mnist import load_mnist
+import numpy as np
+from PIL import Image
+CATEGOLIES_NUM = 10
+(x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+LAYER_NUM = 3
+unit_num = [x_train.shape[1], 100, CATEGOLIES_NUM]
+u = [np.zeros(unit_num[i]) for i in range(LAYER_NUM)]
+x = [np.zeros(unit_num[i]) for i in range(1, LAYER_NUM)]
+b = [np.zeros(unit_num[i]) for i in range(1, LAYER_NUM)]
+w = [[np.zeros(unit_num[i+1]) for j in range (unit_num[i])] for i in range(LAYER_NUM-1)]
+
+def img_show(img):
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def softmax(x):
+    return np.exp(x - np.max(x)) / np.sum(np.exp(x - np.max(x)))
+                                          
+def fowrd_propagation(input_arr):
+    u[0] = input_arr
+    for l in range (LAYER_NUM-1):
+        x[l] = np.dot (w[l] * u[l]) + b[l]
+        if(l == LAYER_NUM-1):
+            u[l+1] = softmax(x[1]) 
+        else
+            u[l+1] = sigmoid(x[l])
+    return u[LAYER_NUM-1]
+
+def cross_enttory_error(output, true_val):
+    # add delta as 1e-7 in order to avoid returing -inf
+    return -np.sum(true_val * np.log(output + 1e-7))
+
+def back_propagation(network, err):
+    for l in range(LAYER_NUM-1, -1, -1):
+        delta[l] =  np.dot(w[l], delta[l]) * dx(sigmoid (u[l]))
+        w[l] =  w[l] - learning_rate * delta[l] * x[l]
+    return 0
+
+def delta:
+    return 0
+img = x_train[1]
+label = t_train[1]
+img = img.reshape(28,28)
+# img_show(img)                    
+print(x_train.shape[1])
+print(t_train.shape)
+print(x_test.shape)
+print(t_test.shape)

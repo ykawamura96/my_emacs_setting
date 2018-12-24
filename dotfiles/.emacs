@@ -120,8 +120,8 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;;rosemacs
-(add-to-list 'load-path "/opt/ros/kinetic/share/emacs/site-lisp")
-(require 'rosemacs-config)
+;;(add-to-list 'load-path "/opt/ros/kinetic/share/emacs/site-lisp")
+;;(require 'rosemacs-config)
 ;;(global-set-key "\C-x\C-r" ros-keymap)
 
 ;; 括弧の色を強調する設定
@@ -161,12 +161,12 @@
 
 
 ;;python
-(require 'jedi-core)
-(setq jedi:complete-on-dot t)
-(setq jedi:use-shortcuts t)
+ (require 'jedi-core)
+ (setq jedi:complete-on-dot t)
+;; (setq jedi:use-shortcuts t)
 ;;(jedi:install-server)
-(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
-(add-hook 'python-mode-hook 'jedi:setup)
+;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
+;; (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi)
 
 ;;bash-completion
@@ -309,7 +309,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
+    (slime anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
