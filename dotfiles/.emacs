@@ -307,9 +307,13 @@
      ("#3C3D37" . 100))))
  '(irony-additional-clang-options (quote ("-std=c++11")))
  '(magit-diff-use-overlays nil)
+ '(minimap-automatically-delete-window nil)
+ '(minimap-display-semantic-overlays t)
+ '(minimap-mode t)
+ '(minimap-window-location (quote right) nil nil "changed")
  '(package-selected-packages
    (quote
-    (slime anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
+    (minimap slime anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
@@ -344,9 +348,12 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; mimimap
+(require 'minimap)
+
 ;; redo+
 (require 'redo+)
-;;(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-A-z") 'undo)
 (global-set-key (kbd "C-S-z") 'redo)
 
 (setq undo-no-redo t) ; 過去のundoがredoされないようにする
