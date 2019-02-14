@@ -1,0 +1,2 @@
+#動画をgifに変化するコマンド
+ffmpeg -i semi_2.mp4 -vf scale=720:-1 semi_2.gif

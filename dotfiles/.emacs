@@ -307,7 +307,7 @@
  '(minimap-window-location (quote right) nil nil "changed")
  '(package-selected-packages
    (quote
-    (atom-one-dark-theme minimap slime anzu dracula-theme company-irony-c-headers helm flycheck bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons))))
+    (atom-one-dark-theme minimap slime anzu dracula-theme company-irony-c-headers helm bash-completion autopair jedi-direx moe-theme powerline zenburn-theme monokai-theme forest-blue-theme python-mode neotree jedi golden-ratio context-coloring company-jedi company-irony clang-format all-the-icons))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
